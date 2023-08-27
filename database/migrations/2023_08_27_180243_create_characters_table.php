@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('status');
+            $table->string('species');
+            $table->string('type');
+            $table->string('gender');
+            $table->string('origin');
+            $table->string('location');
+            $table->string('image');
+            $table->string('episode');
+            $table->string('url');
             $table->timestamps();
         });
     }
