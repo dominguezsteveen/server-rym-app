@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('origin');
             $table->string('location');
             $table->string('image');
-            $table->string('episode');
+            $table->longText('episode');
             $table->string('url');
             $table->timestamps();
         });

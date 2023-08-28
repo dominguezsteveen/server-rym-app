@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\CharacterController;
+use App\Models\Character;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
