@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CharacterController;
+use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\LocationController;
 use App\Models\Character;
 use GuzzleHttp\Client;
@@ -30,3 +31,7 @@ Route::delete('characters', [CharacterController::class, 'destroy']);
 Route::resource('locations', LocationController::class);
 Route::patch('locations', [LocationController::class, 'update']);
 Route::delete('locations', [LocationController::class, 'destroy']);
+
+Route::resource('episodes', EpisodeController::class);
+Route::patch('episodes', [EpisodeController::class, 'update']);
+Route::delete('episodes', [EpisodeController::class, 'destroy']);
