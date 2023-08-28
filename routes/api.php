@@ -27,8 +27,6 @@ Route::resource('characters', CharacterController::class);
 Route::patch('characters', [CharacterController::class, 'update']);
 Route::delete('characters', [CharacterController::class, 'destroy']);
 
-Route::get('locations', [LocationController::class, 'index']);
-Route::post('locations', [LocationController::class, 'index']);
-Route::put('locations', [LocationController::class, 'index']);
-Route::patch('locations', [LocationController::class, 'index']);
-Route::delete('locations', [LocationController::class, 'index']);
+Route::resource('locations', LocationController::class);
+Route::patch('locations', [LocationController::class, 'update']);
+Route::delete('locations', [LocationController::class, 'destroy']);
