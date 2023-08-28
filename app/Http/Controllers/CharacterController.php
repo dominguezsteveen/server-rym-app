@@ -5,16 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\Character;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use stdClass;
 
 class CharacterController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $characters = Character::paginate(20);
-        return response()->json($characters);
+        $page = $request->page ?? 1;
+        $perPage = 20;
+        $characters = Character::limit($perPage)->offset((($page - 1) * $perPage))->get();
+
+        $count = Character::count();
+        $info = new stdClass();
+        $info->count = $count;
+        $info->pages = ceil($count / $perPage);
+
+        $jsonRs = new stdClass;
+        $jsonRs->info = $info;
+        $jsonRs->results = $characters;
+        return response()->json($jsonRs);
     }
 
     /**
