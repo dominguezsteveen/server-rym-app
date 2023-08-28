@@ -22,4 +22,16 @@ class Character extends Model
         'episode',
         'url'
     ];
+
+    protected $casts = [
+        'origin' => 'json',
+        'location' => 'json',
+        'episode' => 'array',
+    ];
+
+     // Define un accesor para "origin" que devuelve un objeto en lugar de una cadena JSON
+     public function getOriginAttribute($value)
+     {
+         return json_decode($value);
+     }
 }
