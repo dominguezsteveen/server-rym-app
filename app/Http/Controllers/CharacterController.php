@@ -69,7 +69,7 @@ class CharacterController extends Controller
      */
     public function show(Character $character)
     {
-        return response()->json(['status' => true, 'data' => $character]);
+        return response()->json($character);
     }
 
     /**

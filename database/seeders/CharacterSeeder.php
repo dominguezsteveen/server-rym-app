@@ -21,15 +21,15 @@ class CharacterSeeder extends Seeder
 
             $character = new Character();
             $character->id = $data->id;
-            $character->name = "$data->name";
-            $character->status = "$data->status";
+            $character->name = $data->name;
+            $character->status = $data->status;
             $character->species = $data->species;
-            $character->type = " $data->type";
+            $character->type = $data->type;
             $character->gender = $data->gender;
-            $character->origin = json_encode($data->origin);
-            $character->location = json_encode($data->location);
+            $character->origin = str_replace("\\", "", json_encode($data->origin));
+            $character->location = str_replace("\\", "", json_encode($data->location));
             $character->image = $data->image;
-            $character->episode = json_encode($data->episode);
+            $character->episode = str_replace("\\", "", json_encode($data->episode));
             $character->url = $data->url;
             $character->save();
         }
