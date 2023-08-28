@@ -5,28 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Character extends Model
+class Location extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
         'name',
-        'status',
-        'species',
         'type',
-        'gender',
-        'origin',
-        'location',
-        'image',
-        'episode',
+        'dimension',
+        'residents',
         'url'
     ];
 
     protected $casts = [
-        'origin' => 'json',
-        'location' => 'json',
-        'episode' => 'array',
+        'residents' => 'array'
     ];
 
     // Define un accesor para "origin" que devuelve un objeto en lugar de una cadena JSON
