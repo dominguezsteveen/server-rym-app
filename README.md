@@ -39,7 +39,7 @@ Al iniciar la aplicación en la consola arrojara "Server running on [http://127.
 
 Se tienen endpoints tipos GET, POST, PUT, PATCH y DELETE, los cuales consumen los recursos de las 3 entidades: Character, Location, Episode
 
-Estos pueden ser consumiendos mediante:
+Estos pueden ser consumidos mediante:
 
 →/crud/characters
 →/characters
@@ -54,9 +54,13 @@ Estos pueden ser consumiendos mediante:
 || Consumo de los endpoints tipo GET, POST, PUT, PATCH, DELETE para la entidad Episode.
 
 Cabe aclarar que los endpoints tipo PUT, PATCH, DELETE necesitan ser suminstrados con un parametro 'id', esto para especificar el registro exacto de la entidad.
+
+-   El archivo ubicado en public/files/Informe prueba técnica DT.docx, describe brevemente el proceso de análisis, entendimiento, desarrollo y complicaciones encontradas en la resolución del reto.
+
 ## Construido con 🛠️
 
 -   [Laravel](https://laravel.com/docs/10.x)
+
 ## Autor
 
 -   Steveen Dominguez
