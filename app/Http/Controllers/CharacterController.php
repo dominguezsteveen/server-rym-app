@@ -34,34 +34,30 @@ class CharacterController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'name' => 'required|string|min:1|max:100',
-            'status' => 'required|string|min:1|max:100',
-            'species' => 'required|string|min:1|max:100',
-            'type' => 'required|string',
-            'gender' => 'required|string|min:1|max:100',
-            'origin' => 'required|string',
-            'location' => 'required|string',
-            'image' => 'required|string',
-            'episode' => 'required|string',
-            'url' => 'required|string'
-        ];
+        try {
+            $character = new Character();
+            $character->name = $request->name ?? '';
+            $character->status = $request->status ?? '';
+            $character->species = $request->species ?? '';
+            $character->type = $request->type ?? '';
+            $character->gender = $request->gender ?? '';
+            $character->origin = $request->origin ?? '';
+            $character->location = $request->location ?? '';
+            $character->image = $request->image ?? '';
+            $character->episode = $request->episode ?? '';
+            $character->url = $request->url ?? '';
+            $character->save();
 
-        $validator = Validator::make($request->input(), $rules);
-        if ($validator->fails()) {
             return response()->json([
-                'status' => false,
-                'errors' => $validator->errors()->all()
-            ], 400);
+                'error' => false,
+                'msg' => 'Character created succesfully'
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => true,
+                'msg' => strval($th)
+            ], 200);
         }
-
-        $character = new Character($request->input());
-        $character->save();
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Character created succesfully'
-        ], 200);
     }
 
     /**

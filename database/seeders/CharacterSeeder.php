@@ -26,10 +26,12 @@ class CharacterSeeder extends Seeder
             $character->species = $data->species;
             $character->type = $data->type;
             $character->gender = $data->gender;
-            $character->origin = str_replace("\\", "", json_encode($data->origin));
-            $character->location = str_replace("\\", "", json_encode($data->location));
+            // $character->origin = str_replace('\\', "", json_encode($data->origin));
+            $character->origin = $data->origin;
+            // $character->location = str_replace("\\", "", json_encode($data->location));
+            $character->location = $data->location;
             $character->image = $data->image;
-            $character->episode = str_replace("\\", "", json_encode($data->episode));
+            $character->episode = str_replace("\\", "", $data->episode);
             $character->url = $data->url;
             $character->save();
         }

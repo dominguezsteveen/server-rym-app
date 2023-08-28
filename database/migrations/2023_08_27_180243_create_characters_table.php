@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('species');
             $table->string('type');
             $table->string('gender');
-            $table->string('origin');
-            $table->string('location');
-            $table->string('image');
+            $table->json('origin');
+            $table->json('location');
+            $table->longText('image');
             $table->longText('episode');
             $table->string('url');
             $table->timestamps();
