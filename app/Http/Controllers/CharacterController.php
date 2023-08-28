@@ -71,48 +71,59 @@ class CharacterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Character $character)
+    public function update(Request $request)
     {
+        try {
+            $id = $request->query('id');
 
-        $rules = [
-            'name' => 'required|string|min:1|max:100',
-            'status' => 'required|string|min:1|max:100',
-            'species' => 'required|string|min:1|max:100',
-            'type' => 'required|string',
-            'gender' => 'required|string|min:1|max:100',
-            'origin' => 'required|string',
-            'location' => 'required|string',
-            'image' => 'required|string',
-            'episode' => 'required|string',
-            'url' => 'required|string'
-        ];
+            $character = Character::find($id);
+            $character->name = $request->name ?? '';
+            $character->status = $request->status ?? '';
+            $character->species = $request->species ?? '';
+            $character->type = $request->type ?? '';
+            $character->gender = $request->gender ?? '';
+            $character->origin = $request->origin ?? '';
+            $character->location = $request->location ?? '';
+            $character->image = $request->image ?? '';
+            $character->episode = $request->episode ?? '';
+            $character->url = $request->url ?? '';
+            $character->save();
 
-        $validator = Validator::make($request->input(), $rules);
-        if ($validator->fails()) {
             return response()->json([
-                'status' => false,
-                'errors' => $validator->errors()->all()
-            ], 400);
+                'error' => false,
+                'msg' => 'Character updated succesfully'
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => true,
+                'msg' => strval($th)
+            ], 200);
         }
-
-        $character->update($request->input());
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Character updated succesfully'
-        ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Character $character)
+    public function destroy(Request $request)
     {
-        $character->delete();
+        try {
+            $id = $request->query('id');
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Character deleted succesfully'
-        ], 200);
+            $character = Character::find($id);
+
+            $character->delete();
+
+            return response()->json([
+                'error' => false,
+                'msg' => 'Character deleted succesfully'
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'error' => true,
+                'msg' => strval($th)
+            ], 200);
+        }
     }
 }
